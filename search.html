@@ -293,7 +293,7 @@
                         </li>
                     </ul>
                     <div class="top-pagination">
-                        <span>共 <i style="color: #222;">{{total}+}</i> 商品</span>
+                        <span>共 <i style="color: #222;">{{total}}+</i> 商品</span>
                         <span><i style="color: red;">{{search.page}}</i>/{{totalPage}}</span>
                         <a class="btn-arrow" href="#" @click.prevent="prePage" style="display: inline-block">&lt;</a>
                         <a class="btn-arrow" href="#" @click.prevent="nextPage" style="display: inline-block">&gt;</a>
@@ -342,14 +342,14 @@
             <div class="fr">
                 <div class="sui-pagination pagination-large">
                     <ul>
-                        <li :class="{prev:true disabled:search.page === 1}">
+                        <li :class="{prev:true,disabled:search.page === 1}">
                             <a href="#" @click.prevent="prePage">«上一页</a>
                         </li>
-                        <li :class="{active:i ===search.page}" v-for="i in Math.min(5,totalPage)" :key="i">
+                        <li :class="{active:i === search.page}" v-for="i in Math.min(5,totalPage)" :key="i">
                             <a href="#" v-text="index(i)"></a>
                         </li>
                         <li class="dotted" v-show="search.page + 2 < totalPage && totalPage > 5"><span>...</span></li>
-                        <li :class="{next:true disabled:search.page === totalPage}">
+                        <li :class="{next:true,disabled:search.page === totalPage}">
                             <a href="#" @click.prevent="nextPage">下一页»</a>
                         </li>
                     </ul>
@@ -454,7 +454,10 @@
         el: "#searchApp",
         data: {
             ly,
-            search:{},
+            search:{
+                key:"",
+                page:1
+            },
             goodsList:[],
             total:0,
             totalPage:0,
