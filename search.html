@@ -118,31 +118,35 @@
         </div>
         <!--selector-->
         <div class="clearfix selector">
-            <div class="type-wrap" v-for="(f,i) in filters" :key="i" v-if="f.k !== '品牌'">
-                <div class="fl key">{{f.k}}</div>
-                <div class="fl value">
-                    <ul class="type-list">
-                        <li v-for="(option,j) in f.options" :key="j">
-                            <a>{{option.name}}</a>
-                        </li>
-                    </ul>
+            <div class="type-wrap" v-for="(f,i) in filters" :key="i" >
+                <div v-if="f.k !== '品牌'">
+                    <div class="fl key">{{f.k}}</div>
+                    <div class="fl value">
+                        <ul class="type-list">
+                            <li v-for="(option,j) in f.options" :key="j">
+                                <a>{{option.name}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="fl ext"></div>
                 </div>
-                <div class="fl ext"></div>
-            </div>
-            <div class="type-wrap logo" v-else>
-                <div class="fl key brand">{{f.k}}</div>
-                <div class="value logos">
-                    <ul class="logo-list">
-                        <li v-for="(option,j) in f.options" v-if="option.image">
-                            <img :src="option.image" />
-                        </li>
-                        <li style="text-align: center">
-                            <a style="line-height: 30px; font-size: 12px" href="#">{{option.name}}</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="fl ext">
-                    <a href="javascript:void(0);" class="sui-btn">多选</a>
+                <div class="type-wrap logo" v-else>
+                    <div class="fl key brand">{{f.k}}</div>
+                    <div class="value logos">
+                        <ul class="logo-list" >
+                            <li  v-for="(option,j) in f.options">
+                                <div v-if="option.image">
+                                    <img :src="option.image" />
+                                </div>
+                                <div style="text-align: center">
+                                    <a style="line-height: 30px; font-size: 12px" href="#">{{option.name}}</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="fl ext">
+                        <a href="javascript:void(0);" class="sui-btn">多选</a>
+                    </div>
                 </div>
             </div>
             <div class="type-wrap">
